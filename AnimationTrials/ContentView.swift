@@ -8,9 +8,21 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
+    
+    var examples = Example.Example.allCases
+    @State var isShowing = true
     var body: some View {
-        Text("Hello, World!")
+        NavigationView() {
+            List {
+                ForEach(0..<examples.count) { index in
+                    NavigationLink(
+                        self.examples[index].rawValue,
+                        destination: Example(example: self.examples[index]))
+                }
+            }.navigationBarTitle("Animation Examples")
+        }
     }
 }
 
